@@ -15,30 +15,32 @@ struct ContentView: View {
     
     var body: some View {
         
-        
-            
+        ZStack{
+            Color(.black).ignoresSafeArea()
             List(menuItems){item in
                 //            Text(item.MovieName)
                 
-                Image(item.ImageName).resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .cornerRadius(1.0)
-                    .frame(width: 920,height: 550)
-                
-                HStack{
-                    Spacer()
-                    Text(item.MovieName).font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/).fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/).multilineTextAlignment(.leading)
-                    Spacer()
+                VStack{
+                    Image(item.ImageName).resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .padding(.bottom,-20)
+                    
+                    Text(item.MovieName).foregroundStyle(Color.white)
+                        .font(.custom("Zapfino", size: 15))
+                        .opacity(5.0)
+                        .padding()
+                    
                 }
+                    .listRowBackground(Color.clear)
                 
-            }.background(Color.black)
+                
+            }.listStyle(.plain)
             .onAppear{
-                menuItems = dataService.getData()
-            }
+                    menuItems = dataService.getData()
+                }
             
             
-            
-        
+        }
         
     }
     
